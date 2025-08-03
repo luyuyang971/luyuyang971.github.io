@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>luyuyang的主页</title>
+    <title>luyuyang的主页 | 简化登录</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -35,7 +35,7 @@
         
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
             position: relative;
             z-index: 2;
@@ -43,13 +43,13 @@
         
         header {
             text-align: center;
-            padding: 30px 0;
+            padding: 20px 0;
             margin-bottom: 30px;
             animation: fadeInDown 1s ease;
         }
         
         h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             margin-bottom: 10px;
             background: linear-gradient(45deg, #4dfed4, #2da9d8);
@@ -59,76 +59,43 @@
             letter-spacing: 1px;
         }
         
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a2fae9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
         .content-wrapper {
             display: flex;
             flex-wrap: wrap;
-            gap: 40px;
+            gap: 30px;
             justify-content: center;
             animation: fadeInUp 1s ease;
         }
         
         .auth-section {
             flex: 1;
-            min-width: 350px;
-            max-width: 500px;
+            min-width: 100%;
+            max-width: 400px;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 30px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.5s ease;
-        }
-        
-        .tabs {
-            display: flex;
-            margin-bottom: 30px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 50px;
-            padding: 5px;
-            overflow: hidden;
-        }
-        
-        .tab {
-            flex: 1;
-            padding: 15px;
             text-align: center;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            color: rgba(255, 255, 255, 0.7);
         }
         
-        .tab.active {
-            background: linear-gradient(to right, #0da08a, #1a8faa);
-            color: white;
-            box-shadow: 0 5px 15px rgba(13, 160, 138, 0.4);
-        }
-        
-        .form-container {
-            position: relative;
-            overflow: hidden;
-            min-height: 300px;
-        }
-        
-        .form {
-            position: absolute;
-            width: 100%;
-            padding: 20px;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            opacity: 0;
-            transform: translateX(100%);
-        }
-        
-        .form.active {
-            opacity: 1;
-            transform: translateX(0);
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
         }
         
         .form-group {
-            margin-bottom: 25px;
+            text-align: left;
         }
         
         label {
@@ -152,12 +119,12 @@
         
         input {
             width: 100%;
-            padding: 15px 15px 15px 45px;
+            padding: 16px 16px 16px 50px;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             background: rgba(255, 255, 255, 0.12);
             color: white;
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: all 0.3s;
             border: 1px solid transparent;
         }
@@ -171,9 +138,9 @@
         
         button {
             width: 100%;
-            padding: 15px;
+            padding: 16px;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
@@ -181,6 +148,7 @@
             background: linear-gradient(to right, #0da08a, #1a8faa);
             color: white;
             box-shadow: 0 5px 15px rgba(13, 160, 138, 0.4);
+            margin-top: 10px;
         }
         
         button:hover {
@@ -188,30 +156,16 @@
             box-shadow: 0 8px 20px rgba(13, 160, 138, 0.6);
         }
         
-        .message {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            display: none;
-        }
-        
-        .success {
-            background: rgba(46, 204, 113, 0.2);
-            border: 1px solid #2ecc71;
-            color: #2ecc71;
-        }
-        
-        .error {
-            background: rgba(231, 76, 60, 0.2);
-            border: 1px solid #e74c3c;
-            color: #e74c3c;
+        .login-note {
+            margin-top: 15px;
+            color: #a2fae9;
+            font-size: 0.95rem;
         }
         
         .profile-section {
             flex: 1;
-            min-width: 350px;
-            max-width: 600px;
+            min-width: 100%;
+            max-width: 500px;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(12px);
             border-radius: 20px;
@@ -231,7 +185,7 @@
         }
         
         h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 25px;
             color: #4dfed4;
             position: relative;
@@ -250,8 +204,8 @@
         }
         
         h3 {
-            font-size: 1.5rem;
-            margin: 20px 0 10px;
+            font-size: 1.4rem;
+            margin: 22px 0 10px;
             color: #a2fae9;
         }
         
@@ -285,6 +239,7 @@
         
         .contact-details {
             flex: 1;
+            text-align: left;
         }
         
         .contact-details p {
@@ -295,7 +250,7 @@
         .luogu-profile {
             display: flex;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 25px;
             padding: 15px;
             background: rgba(0, 0, 0, 0.15);
             border-radius: 15px;
@@ -335,6 +290,7 @@
         .logout-btn {
             margin-top: 30px;
             background: linear-gradient(to right, #1a5f75, #1a2a6c);
+            padding: 14px;
         }
         
         .logout-btn:hover {
@@ -354,90 +310,9 @@
         .bubble {
             position: absolute;
             bottom: -100px;
-            width: 40px;
-            height: 40px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             animation: rise 10s infinite ease-in;
-        }
-        
-        .bubble:nth-child(1) {
-            width: 40px;
-            height: 40px;
-            left: 10%;
-            animation-duration: 8s;
-        }
-        
-        .bubble:nth-child(2) {
-            width: 20px;
-            height: 20px;
-            left: 20%;
-            animation-duration: 5s;
-            animation-delay: 1s;
-        }
-        
-        .bubble:nth-child(3) {
-            width: 50px;
-            height: 50px;
-            left: 35%;
-            animation-duration: 7s;
-            animation-delay: 2s;
-        }
-        
-        .bubble:nth-child(4) {
-            width: 80px;
-            height: 80px;
-            left: 50%;
-            animation-duration: 11s;
-            animation-delay: 0s;
-        }
-        
-        .bubble:nth-child(5) {
-            width: 35px;
-            height: 35px;
-            left: 55%;
-            animation-duration: 6s;
-            animation-delay: 1s;
-        }
-        
-        .bubble:nth-child(6) {
-            width: 45px;
-            height: 45px;
-            left: 65%;
-            animation-duration: 8s;
-            animation-delay: 3s;
-        }
-        
-        .bubble:nth-child(7) {
-            width: 90px;
-            height: 90px;
-            left: 70%;
-            animation-duration: 12s;
-            animation-delay: 2s;
-        }
-        
-        .bubble:nth-child(8) {
-            width: 25px;
-            height: 25px;
-            left: 80%;
-            animation-duration: 6s;
-            animation-delay: 2s;
-        }
-        
-        .bubble:nth-child(9) {
-            width: 15px;
-            height: 15px;
-            left: 70%;
-            animation-duration: 5s;
-            animation-delay: 1s;
-        }
-        
-        .bubble:nth-child(10) {
-            width: 90px;
-            height: 90px;
-            left: 25%;
-            animation-duration: 10s;
-            animation-delay: 4s;
         }
         
         @keyframes rise {
@@ -469,110 +344,120 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
+        /* 移动设备优化 */
         @media (max-width: 768px) {
-            .content-wrapper {
-                flex-direction: column;
-            }
-            
-            .auth-section, .profile-section {
-                width: 100%;
+            .container {
+                padding: 10px;
             }
             
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .auth-section, .profile-section {
+                padding: 25px 20px;
+                border-radius: 15px;
+            }
+            
+            input {
+                padding: 14px 14px 14px 45px;
+                font-size: 1rem;
+            }
+            
+            button {
+                padding: 14px;
+                font-size: 1.1rem;
+            }
+            
+            .contact-info {
+                padding: 12px;
+            }
+            
+            .contact-info i {
+                width: 45px;
+                height: 45px;
+                margin-right: 15px;
+                font-size: 18px;
+            }
+            
+            .luogu-profile img {
+                width: 70px;
+                height: 70px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+            
+            .contact-details p, a {
+                font-size: 0.95rem;
+            }
+            
+            .luogu-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .luogu-profile img {
+                margin-right: 0;
+                margin-bottom: 15px;
             }
         }
     </style>
 </head>
 <body>
     <div class="bubbles">
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
+        <!-- 气泡背景 -->
+        <div class="bubble" style="left: 5%; width: 40px; height: 40px; animation-duration: 12s;"></div>
+        <div class="bubble" style="left: 25%; width: 60px; height: 60px; animation-duration: 15s; animation-delay: 2s;"></div>
+        <div class="bubble" style="left: 45%; width: 30px; height: 30px; animation-duration: 10s; animation-delay: 1s;"></div>
+        <div class="bubble" style="left: 65%; width: 50px; height: 50px; animation-duration: 13s; animation-delay: 3s;"></div>
+        <div class="bubble" style="left: 85%; width: 70px; height: 70px; animation-duration: 18s; animation-delay: 4s;"></div>
     </div>
     
     <div class="container">
         <header>
             <h1>欢迎来到luyuyang的主页！</h1>
+            <p class="subtitle">在这里您可以了解我的联系方式和项目信息</p>
         </header>
         
         <div class="content-wrapper">
             <div class="auth-section" id="authSection">
-                <div class="tabs">
-                    <div class="tab active" data-tab="login">登录</div>
-                    <div class="tab" data-tab="register">注册</div>
-                </div>
-                
-                <div class="form-container">
-                    <form id="loginForm" class="form active">
-                        <div class="form-group">
-                            <label for="loginUsername">用户名</label>
-                            <div class="input-with-icon">
-                                <i class="fas fa-user"></i>
-                                <input type="text" id="loginUsername" placeholder="请输入用户名" required>
-                            </div>
+                <h2>轻松登录</h2>
+                <div class="login-form">
+                    <div class="form-group">
+                        <label for="username">您的昵称</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="username" placeholder="输入任意昵称" required>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="loginPassword">密码</label>
-                            <div class="input-with-icon">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="loginPassword" placeholder="请输入密码" required>
-                            </div>
-                        </div>
-                        
-                        <button type="submit">登录</button>
-                        <div id="loginMessage" class="message"></div>
-                    </form>
+                    </div>
                     
-                    <form id="registerForm" class="form">
-                        <div class="form-group">
-                            <label for="registerUsername">用户名</label>
-                            <div class="input-with-icon">
-                                <i class="fas fa-user"></i>
-                                <input type="text" id="registerUsername" placeholder="请输入用户名" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="registerEmail">邮箱</label>
-                            <div class="input-with-icon">
-                                <i class="fas fa-envelope"></i>
-                                <input type="email" id="registerEmail" placeholder="请输入邮箱" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="registerPassword">密码</label>
-                            <div class="input-with-icon">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="registerPassword" placeholder="请输入密码 (至少6位)" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="confirmPassword">确认密码</label>
-                            <div class="input-with-icon">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="confirmPassword" placeholder="请再次输入密码" required>
-                            </div>
-                        </div>
-                        
-                        <button type="submit">注册</button>
-                        <div id="registerMessage" class="message"></div>
-                    </form>
+                    <button id="loginBtn">立即登录</button>
+                    <p class="login-note">无需密码，输入任意昵称即可登录查看我的联系方式</p>
                 </div>
             </div>
             
             <div class="profile-section" id="profileSection">
-                <h2>欢迎, <span id="usernameDisplay">luyuyang</span>!</h2>
+                <h2>欢迎, <span id="usernameDisplay">访客</span>!</h2>
                 
                 <div class="contact-info">
                     <i class="fas fa-envelope"></i>
@@ -620,100 +505,22 @@
     </div>
     
     <script>
-        // 切换登录/注册表单
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                // 更新选项卡状态
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                // 显示对应的表单
-                const formType = tab.getAttribute('data-tab');
-                document.querySelectorAll('.form').forEach(form => {
-                    form.classList.remove('active');
-                });
-                document.getElementById(`${formType}Form`).classList.add('active');
-            });
-        });
-        
-        // 用户数据存储在localStorage
-        const users = JSON.parse(localStorage.getItem('users')) || {};
-        
-        // 注册表单提交
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // 登录按钮点击事件
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            const username = document.getElementById('username').value.trim();
             
-            const username = document.getElementById('registerUsername').value;
-            const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const message = document.getElementById('registerMessage');
-            
-            // 验证表单
-            if (password !== confirmPassword) {
-                showMessage(message, '两次输入的密码不一致', 'error');
+            if (username === '') {
+                alert('请输入一个昵称');
                 return;
             }
-            
-            if (password.length < 6) {
-                showMessage(message, '密码长度至少为6位', 'error');
-                return;
-            }
-            
-            if (users[username]) {
-                showMessage(message, '该用户名已被注册', 'error');
-                return;
-            }
-            
-            // 保存用户
-            users[username] = { email, password };
-            localStorage.setItem('users', JSON.stringify(users));
-            
-            // 显示成功消息
-            showMessage(message, '注册成功！请登录', 'success');
-            
-            // 清空表单
-            this.reset();
-            
-            // 自动切换到登录选项卡
-            setTimeout(() => {
-                document.querySelector('.tab[data-tab="login"]').click();
-            }, 1500);
-        });
-        
-        // 登录表单提交
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
-            const message = document.getElementById('loginMessage');
-            
-            const user = users[username];
-            
-            if (!user) {
-                showMessage(message, '用户名不存在', 'error');
-                return;
-            }
-            
-            if (user.password !== password) {
-                showMessage(message, '密码错误', 'error');
-                return;
-            }
-            
-            // 登录成功
-            showMessage(message, `欢迎回来，${username}！`, 'success');
-            this.reset();
             
             // 模拟登录状态
             localStorage.setItem('currentUser', username);
             
             // 显示个人资料
-            setTimeout(() => {
-                document.getElementById('authSection').classList.add('logged-in');
-                document.getElementById('profileSection').classList.add('active');
-                document.getElementById('usernameDisplay').textContent = username;
-            }, 1000);
+            document.getElementById('authSection').classList.add('logged-in');
+            document.getElementById('profileSection').classList.add('active');
+            document.getElementById('usernameDisplay').textContent = username;
         });
         
         // 退出登录
@@ -721,20 +528,8 @@
             localStorage.removeItem('currentUser');
             document.getElementById('authSection').classList.remove('logged-in');
             document.getElementById('profileSection').classList.remove('active');
-            document.querySelector('.tab[data-tab="login"]').click();
+            document.getElementById('username').value = '';
         });
-        
-        // 显示消息函数
-        function showMessage(element, text, type) {
-            element.textContent = text;
-            element.className = 'message ' + type;
-            element.style.display = 'block';
-            
-            // 3秒后隐藏消息
-            setTimeout(() => {
-                element.style.display = 'none';
-            }, 3000);
-        }
         
         // 检查是否有已登录用户
         window.addEventListener('DOMContentLoaded', () => {
@@ -745,32 +540,6 @@
                 document.getElementById('usernameDisplay').textContent = currentUser;
             }
         });
-        
-        // 创建气泡
-        function createBubbles() {
-            const bubblesContainer = document.querySelector('.bubbles');
-            for (let i = 0; i < 15; i++) {
-                const bubble = document.createElement('div');
-                bubble.classList.add('bubble');
-                
-                // 随机大小
-                const size = Math.random() * 60 + 20;
-                bubble.style.width = `${size}px`;
-                bubble.style.height = `${size}px`;
-                
-                // 随机位置
-                bubble.style.left = `${Math.random() * 100}%`;
-                
-                // 随机动画延迟和持续时间
-                bubble.style.animationDelay = `${Math.random() * 5}s`;
-                bubble.style.animationDuration = `${Math.random() * 10 + 5}s`;
-                
-                bubblesContainer.appendChild(bubble);
-            }
-        }
-        
-        // 初始化气泡
-        createBubbles();
     </script>
 </body>
 </html>
