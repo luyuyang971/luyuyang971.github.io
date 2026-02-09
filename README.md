@@ -1,2 +1,2 @@
-# luyuyang971.github.io
+# sgsy.github.io
 一个个人博客

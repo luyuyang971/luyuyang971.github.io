@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解决Github访问速度慢</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", "PingFang SC", sans-serif;
+        }
+
+        /* 页面背景 */
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* 主内容卡片 */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 标题样式 */
+        h1 {
+            color: #24292e;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            color: #24292e;
+            margin: 30px 0 15px;
+            font-size: 24px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        /* h2左侧装饰线 */
+        h2::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 3px;
+        }
+
+        h3 {
+            color: #444;
+            margin: 20px 0 10px;
+            font-size: 18px;
+        }
+
+        h4 {
+            color: #666;
+            margin: 15px 0 8px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* 列表样式 */
+        ul {
+            padding-left: 30px;
+            margin: 10px 0;
+        }
+
+        li {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        /* 超链接样式 */
+        .download-link {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .download-link:hover {
+            background: #5a6edb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        /* 响应式适配（手机端） */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 26px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>解决Github访问速度慢</h1>
+
+        <h2>原因</h2>
+        <ul>
+            <li><strong>网络路由问题</strong>：Github服务器位于境外，国内网络跨国际骨干网访问时，部分运营商路由优化不足，延迟较高。</li>
+            <li><strong>DNS解析异常</strong>：国内DNS对Github域名解析不稳定，可能返回较远节点IP，甚至出现解析超时、污染。</li>
+            <li><strong>国际带宽拥堵</strong>：国际出口带宽有限，高峰时段访问量激增，导致数据传输拥堵、丢包。</li>
+            <li><strong>静态资源加载慢</strong>：Github的图片、CSS等静态资源CDN在国内覆盖不足，部分资源需从境外节点加载。</li>
+            <li><strong>本地网络限制</strong>：企业/校园网络可能限制境外访问，或防火墙过滤部分Github相关请求。</li>
+        </ul>
+
+        <h2>解决方法</h2>
+        <h3>1. 使用VPN</h3>
+        <h3>2. 更改Host</h3>
+        <h4>(1) 下载SwitchHosts</h4>
+        <a href="https://exe1.webgetstore.com/2026/02/09/2bbb16c0cbec519d9defe675a81aff56.exe?sg=18ca6dfed46024183066e8a8542a466a&e=69897f3e&fileName=SwitchHosts_windows_portable_x64_4.2.0.6119.exe&fi=274030754" 
+           class="download-link">
+            下载链接（Windows版）
+        </a>
+        <h4>(2) 打开SwitchHosts</h4>
+        <h4>(3) 添加hosts，选择类型为“远程”，标题随便填，URL为https://raw.hellogithub.com/hosts，更新时间设置为每一个小时，之后点击确定。</h4>
+        <h4>(4) 完成！</h4>
+    </div>
+</body>
+</html>

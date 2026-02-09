@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>luyuyang的个人主页</title>
+    <style>
+        /* 全局样式重置 + 核心基础样式（合并重复的body样式） */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 全局去除a标签下划线（核心需求：所有a标签生效） */
+        a {
+            text-decoration: none !important; /* 强制去除下划线 */
+            color: inherit; /* 继承父元素颜色，避免默认蓝色 */
+            display: inline-block; /* 便于移动端增大点击区域 */
+        }
+
+        /* 合并后的body样式（解决原代码重复定义冲突） */
+        body {
+            /* 背景相关 */
+            background-image: url('background/lucidwatersandlushmountains.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* 布局相关 */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* 过渡与文字 */
+            transition: background-image 1s ease;
+            color: white;
+            font-family: "Microsoft YaHei", sans-serif;
+            text-align: center;
+            padding: 20px;
+            /* 移动端适配：避免横向滚动 */
+            overflow-x: hidden;
+        }
+
+        /* 文案容器：新增动画基础样式 + 移动端适配 */
+        .scenic-text {
+            font-size: clamp(1rem, 4vw, 1.8rem); /* 响应式字号：移动端自动缩小 */
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            margin-bottom: 30px;
+            max-width: 90%; /* 移动端放宽宽度，避免文字溢出 */
+            line-height: 1.6;
+            transition: all 0.8s ease;
+            opacity: 1;
+            transform: translate(0, 0) scale(1) rotate(0deg);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 6rem); /* 响应式字号：移动端自动适配 */
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+            font-weight: bold;
+            transition: all 0.8s ease;
+            opacity: 1;
+            transform: scale(1);
+            margin: 20px 0; /* 移动端增加上下间距，避免拥挤 */
+        }
+
+        /* 自定义h2样式（副标题）+ 移动端适配 */
+        h2 {
+            font-size: clamp(1.2rem, 5vw, 26px); /* 响应式字号 */
+            font-weight: 500;
+            color: #444;
+            margin: 18px 0 8px;
+            line-height: 1.3;
+        }
+
+        /* 自定义h3样式（适配你的工具按钮标题）+ 移动端适配 */
+        h3 {
+            font-size: clamp(1.1rem, 4.5vw, 24px); /* 响应式字号 */
+            font-weight: 500;
+            color: #555;
+            margin: 15px 0 8px;
+        }
+
+        /* h4样式（超链接标题）+ 移动端适配 */
+        h4.middle {
+            font-size: clamp(1.1rem, 4vw, 24px); /* 响应式字号 */
+            color: #fff; /* 适配深色背景，改为白色更醒目 */
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+            margin: 30px 0 0;
+            padding: 15px 25px; /* 增大点击区域 */
+            border-radius: 8px; /* 圆角优化 */
+            transition: all 0.3s ease; /*  hover动画 */
+        }
+
+        /* 超链接hover效果（提升交互体验） */
+        h4.middle:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @keyframes colorChange {
+            0% { color: #87CEFA; } /* 初始淡蓝色 */
+            20% { color: #FFB6C1; } /* 浅粉色 */
+            40% { color: #98FB98; } /* 淡绿色 */
+            60% { color: #F0E68C; } /* 浅黄色 */
+            80% { color: #08f6d3; } /* 青蓝色 */
+            100% { color: #87CEFA; } /* 回到初始色，循环 */
+        }
+
+        /* 定义多种动画类 */
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(20px) scale(1);
+        }
+        .animate-scale-rotate {
+            opacity: 0;
+            transform: scale(0.8) rotate(2deg);
+        }
+        .animate-fade-left {
+            opacity: 0;
+            transform: translateX(-15px) scale(1);
+        }
+        .animate-bounce-scale {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        .animate-blur {
+            opacity: 0;
+            filter: blur(8px);
+            transform: scale(1);
+        }
+        .animate-hi-pulse {
+            transform: scale(0.95);
+            opacity: 0.8;
+        }
+
+        /* 移动端专属适配（屏幕宽度≤768px时生效） */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px; /* 减小移动端内边距 */
+                background-attachment: scroll; /* 修复移动端背景固定导致的显示问题 */
+            }
+            .scenic-text {
+                margin-bottom: 20px; /* 减小文案与标题间距 */
+                line-height: 1.5; /* 优化移动端行高 */
+            }
+            h1 {
+                margin: 15px 0; /* 减小标题上下间距 */
+            }
+            h4.middle {
+                padding: 12px 20px; /* 适配移动端点击区域 */
+                margin-top: 25px;
+            }
+        }
+
+        /* 小屏手机适配（屏幕宽度≤480px） */
+        @media (max-width: 480px) {
+            .scenic-text {
+                max-width: 95%; /* 几乎占满屏幕宽度 */
+            }
+            h1 {
+                font-size: clamp(1.5rem, 10vw, 4rem); /* 进一步缩小超大屏字号 */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scenic-text">
+        青山看不厌，流水趣何长。
+    </div>
+    <h1 style="animation: colorChange 4s linear infinite;">嗨！欢迎来到sgsy的主页</h1>
+    <a href="subpage/ModifyHost/index.html">
+        <h4 class="middle">访问Github速度慢？</h4>
+    </a>
+    <script>
+        const scenicList = [
+            {
+                img: 'background/lucidwatersandlushmountains.png',
+                text: '青山看不厌，流水趣何长。'
+            },
+            {
+                img: 'background/nightsky.png',
+                text: '星河璀璨，晚风轻扬，人间值得，未来可期。'
+            },
+            {
+                img: 'background/sea.png',
+                text: '海压竹枝低复举，风吹山角晦还明。'
+            },
+            {
+                img: 'background/snowymountain.png',
+                text: '皑如山上雪，皎若云间月。'
+            },
+            {
+                img: 'background/sunrise.png',
+                text: '破晓晨光，万物生长，新的一天，温柔以待。'
+            },
+            {
+                img: 'background/universe.png',
+                text: '宇宙浪漫，人间点滴温柔都值得我们前进。'
+            }
+        ];
+
+        const body = document.body;
+        const textElement = document.querySelector('.scenic-text');
+        const hiElement = document.querySelector('h1');
+        let lastIndex = 0;
+        const textAnimateClasses = [
+            'animate-fade-up',
+            'animate-scale-rotate',
+            'animate-fade-left',
+            'animate-bounce-scale',
+            'animate-blur'
+        ];
+        const hiAnimateClasses = ['animate-hi-pulse'];
+        let lastTextAnimate = '';
+
+        function getRandomAnimateClass(animateList, lastClass) {
+            let randomClass;
+            do {
+                randomClass = animateList[Math.floor(Math.random() * animateList.length)];
+            } while (randomClass === lastClass && animateList.length > 1);
+            return randomClass;
+        }
+
+        function runAnimation() {
+            const textAnimate = getRandomAnimateClass(textAnimateClasses, lastTextAnimate);
+            lastTextAnimate = textAnimate;
+            
+            textElement.classList.add(textAnimate);
+            hiElement.classList.add(hiAnimateClasses[0]);
+            
+            setTimeout(() => {
+                textElement.classList.remove(textAnimate);
+                hiElement.classList.remove(hiAnimateClasses[0]);
+            }, 50);
+        }
+
+        function randomSwitchScenic() {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * scenicList.length);
+            } while (randomIndex === lastIndex && scenicList.length > 1);
+            lastIndex = randomIndex;
+
+            const selectedScenic = scenicList[randomIndex];
+            const img = new Image();
+            img.src = selectedScenic.img;
+            
+            img.onload = function() {
+                body.style.backgroundImage = `url(${selectedScenic.img})`;
+                textElement.textContent = selectedScenic.text;
+                runAnimation();
+            };
+            
+            img.onerror = function() {
+                console.error(`图片加载失败：${selectedScenic.img}`);
+                textElement.textContent = selectedScenic.text;
+                runAnimation();
+            };
+        }
+
+        // 首次加载触发
+        randomSwitchScenic();
+        // 每20秒切换一次（含随机动画）
+        setInterval(randomSwitchScenic, 20000);
+    </script>
+</body>
+</html>
